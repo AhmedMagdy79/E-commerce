@@ -71,6 +71,21 @@ const verifyAdmin = (req, res, next) => {
     }
 };
 
+const verifyuseruser = (req, res, next) => {
+    try {
+        verifyToken(req, res, next, () => {
+            if (req.user.isAdmin) {
+                next();
+            } else {
+                errors.forbiddenError();
+            }
+        });
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
+};
+
 module.exports = {
     verifyUser,
     verifyUserCart,
