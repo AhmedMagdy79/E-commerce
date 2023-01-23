@@ -14,6 +14,8 @@ exports.register = async (req, res, next) => {
         result = await db.register(email, name, hashedPassword);
         if (result) {
             return res.status(201).json({ result: "user created succesfully" });
+        } else {
+            throw new Error();
         }
     } catch (err) {
         next(err);

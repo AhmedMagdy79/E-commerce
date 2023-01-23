@@ -3,11 +3,11 @@ const errors = require("../util/error_handling");
 
 exports.addOrder = async (req, res, next) => {
     try {
-        const { userId, address, productIDs } = req.body;
-        const result = await db.addProductToCart(cartID, productID);
+        const { userID, address, cartID, cost} = req.body;
+        const result = await db.addOrder(userID, cartID, address, cost);
         if (result) {
             res.status(201).json({
-                message: "product added to cart Successfully",
+                message: "order Created Successfully",
             });
         } else {
             throw new Error();

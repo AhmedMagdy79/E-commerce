@@ -3,6 +3,6 @@ const router = express.Router();
 const auth = require("../middleware/is_auth");
 const orderController =  require("../controller/order")
 
-router.post("/:id", auth.verifyUser,  )
+router.post("/", auth.verifyUserCart, orderController.addOrder);
 
 module.exports = router;
