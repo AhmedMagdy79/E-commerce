@@ -16,8 +16,7 @@ exports.addOrder = async (userID, cartId, address, cost) => {
             );
         const { ID, cartID } = result.recordset[0];
         result = await insertOrderItems(ID, cartID);
-        console.log(result);
-        return result;
+        return result.rowsAffected[0];
     } catch (err) {
         console.log(err);
         throw new Error();
@@ -34,11 +33,44 @@ const insertOrderItems = async (ID, cartID) => {
                 `INSERT INTO [defaultUser].[OrderItem] (orderID, productID, quantity) 
                 Select ID, productID, quantity from [defaultUser].[Orders] ,[defaultUser].[CartItem]  
                 where [defaultUser].[Orders].ID = @ID AND [defaultUser].[CartItem].cartID = @cartID ;
-
+                
                 Delete from [defaultUser].[CartItem] Where cartID = @cartID;
                 `
             );
         return result;
+    } catch (err) {
+        console.log(err);
+        throw new Error();
+    }
+};
+
+exports.getOrder = async (userID) => {
+    try {
+        let result = await DBconnection()
+            .request()
+            .input("userID", sql.Int, `${userID}`)
+            .query(
+                `Select * from [defaultUser].[Orders] Where userID = @userID AND status = 0
+                `
+            );
+        return result.recordset;
+    } catch (err) {
+        console.log(err);
+        throw new Error();
+    }
+};
+
+
+exports.deleteOrder = async (orderID) => {
+    try {
+        let result = await DBconnection()
+            .request()
+            .input("orderID", sql.Int, `${orderID}`)
+            .query(
+                `Delete from [defaultUser].[Orders] Where ID = @orderID AND status = 0
+                `
+            );
+        return result.rowsAffected[0];
     } catch (err) {
         console.log(err);
         throw new Error();

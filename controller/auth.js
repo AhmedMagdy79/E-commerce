@@ -2,11 +2,20 @@ const db = require("../model/auth");
 const crypto = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const errors = require("../util/error_handling");
+const {validateUserData, validateLogIn} = require("../util/validation");
 require("dotenv").config();
 
 exports.register = async (req, res, next) => {
     try {
         const { name, email, password } = req.body;
+        const {error} = validateUserData(req.body);
+        if(error){
+            errors.validationError(error.details);
+        }
+        const emailExist = db.emailExist(email);
+        if (emailExist){
+            errors.validationError("this email isn't available");
+        }
         hashedPassword = crypto.AES.encrypt(
             password,
             process.env.PASSWORD_SECRET
@@ -25,6 +34,10 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     try {
         const { email, password: inputPassword } = req.body;
+        const { error } = validateLogIn(req.body);
+        if (error) {
+            errors.validationError(error.details);
+        }
         const user = await db.login(email);
         if (!user) {
             errors.unauthorizedError("wrong email or password");

@@ -1,9 +1,14 @@
 const db = require("../model/product");
 const errors = require("../util/error_handling");
+const { validateProductData } = require("../util/validation");
 
 exports.createProduct = async (req, res, next) => {
     try {
         const productData = req.body;
+        const { error } = validateProductData(req.body);
+        if (error) {
+            errors.validationError(error.details);
+        }
         const result = await db.createProduct(productData);
         if (result) {
             res.status(201).json({ message: "product created Successfully" });
@@ -20,7 +25,10 @@ exports.updateProduct = async (req, res, next) => {
     try {
         const productData = req.body;
         const id = req.params.id;
-
+        const { error } = validateProductData(req.body);
+        if (error) {
+            errors.validationError(error.details);
+        }
         const result = await db.updateProduct(id, productData);
         if (result) {
             res.status(200).json({ message: "product Updated Successfully" });

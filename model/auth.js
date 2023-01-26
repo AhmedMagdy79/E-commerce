@@ -13,7 +13,7 @@ exports.register = async (email, userName, password) => {
                 `INSERT INTO [defaultUser].[Users] (email,name,password) Values(@email,@username,@password); 
                 `
             );
-        return 1;
+        return result.rowsAffected[0];
     } catch (err) {
         console.log(err);
         throw new Error();
@@ -30,6 +30,23 @@ exports.login = async (email) => {
                     FROM defaultUser.Users as U
                     INNER JOIN defaultUser.Cart as C
                     on U.ID = C.userID AND U.ID=58; 
+                `
+            );
+        return result.recordset[0];
+    } catch (err) {
+        console.log(err);
+        throw new Error();
+    }
+};
+
+
+exports.emailExist = async (email) => {
+    try {
+        const result = await DBconnection()
+            .request()
+            .input("email", sql.VarChar, `${email}`)
+            .query(
+                `Select * From [defaultUser].[Users] Where email=@email; 
                 `
             );
         return result.recordset[0];
