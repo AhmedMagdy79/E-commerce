@@ -1,5 +1,5 @@
 # E-commerce
-NodeJs E-commerce Project including authentication, authorizathion, Validation, REST APi's
+NodeJs E-commerce Project including authentication, authorizathion, Validation, REST APIS
 
 # Technologies and Libraries
 - NodeJS
@@ -10,7 +10,7 @@ NodeJs E-commerce Project including authentication, authorizathion, Validation, 
 - crypto-js 
 
 
-# REST API's
+# REST APIS
 - 	**Auth Route**
   	 
     **BaseURL** : http://localhost:5000/auth
@@ -25,7 +25,7 @@ NodeJs E-commerce Project including authentication, authorizathion, Validation, 
     | End Point | Method |Description | Body | Auth Header |
     | ----------- | ----------- | ----------- | ----------- | ----------- |
     | / | GET | For admins to get all users | --- | token : bearer (admin token) |
-    | /find/{id} | GET | For admins to get specific user by user-id | ---- | token : bearer (admin token) |
+    | /find/{id} | GET | For admins to get specific user by user-id | --- | token : bearer (admin token) |
     | /{id} | PUT | For user to edit his data | name - email - password | token : bearer (user token) |
     | /{id} | DELETE | For admins to delete specific user by user-id | --- | token : bearer (admin token) |
  
