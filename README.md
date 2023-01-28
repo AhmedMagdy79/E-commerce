@@ -38,8 +38,8 @@ NodeJs E-commerce Project including authentication, authorizathion, Validation, 
     | / | POST | For creating new Product by admin | title - descreption - imgURL - category - color - price | token : bearer (admin token) |
     | /{id} | PUT | For updating Products by admin | title - descreption - imgURL - category - color - price | token : bearer (admin token) |
     | /{id} | DELETE | For admins to delete Products by product-id  | --- | token : bearer (admin token) |
-    | /find/{id} | GET | for users to find specific product by its id | --- | --- |
-    | / | GET | for users to get products  | --- | --- |
+    | /find/{id} | GET | For users to find specific product by its id | --- | --- |
+    | / | GET | For users to get products  | --- | --- |
  
  
  - 	**Cart Route**
@@ -47,10 +47,10 @@ NodeJs E-commerce Project including authentication, authorizathion, Validation, 
     **BaseURL** : http://localhost:5000//cart
     | End Point | Method |Description | Body | Auth Header |
     | ----------- | ----------- | ----------- | ----------- | ----------- |
-    | / | POST | for user to add product to his cart | userid - cartid - productid | token : bearer (user token) |
-    | / | DELETE | for user to delete product from his cart | userid - cartid - productid | token : bearer (user token) |
-    | /clear | DELETE | for user to delete all products from his cart | userid - cartid | token : bearer (user token) |
-    | /{id} | GET | for user to get all products in his cart by his id | --- | token : bearer (user token) |
+    | / | POST | For user to add product to his cart | userid - cartid - productid | token : bearer (user token) |
+    | / | DELETE | For user to delete product from his cart | userid - cartid - productid | token : bearer (user token) |
+    | /clear | DELETE | For user to delete all products from his cart | userid - cartid | token : bearer (user token) |
+    | /{id} | GET | For user to get all products in his cart by his id | --- | token : bearer (user token) |
     
  
 - 	**Order Route**
