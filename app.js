@@ -44,5 +44,5 @@ app.use((error, req, res, next) => {
     });
 });
 
-//orm version 1123
+//orm version 1
 app.listen(5000, databaseConnection.init);
