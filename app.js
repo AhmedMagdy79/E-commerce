@@ -44,5 +44,4 @@ app.use((error, req, res, next) => {
     });
 });
 
-
 app.listen(5000, databaseConnection.init);
