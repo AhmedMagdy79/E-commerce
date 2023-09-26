@@ -5,11 +5,11 @@ require("dotenv").config();
 
 const databaseConnection = require("./util/Database_Connection");
 
-const authRoutes = require("./routes/auth");
-const userRoutes = require("./routes/user");
-const productRoutes = require("./routes/product");
-const cartRoutes = require("./routes/cart");
-const orderRoutes = require("./routes/order");
+// const authRoutes = require("./routes/auth");
+// const userRoutes = require("./routes/user");
+// const productRoutes = require("./routes/product");
+// const cartRoutes = require("./routes/cart");
+// const orderRoutes = require("./routes/order");
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -25,11 +25,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
-app.use("/product", productRoutes);
-app.use("/cart", cartRoutes);
-app.use("/order", orderRoutes);
+// app.use("/auth", authRoutes);
+// app.use("/user", userRoutes);
+// app.use("/product", productRoutes);
+// app.use("/cart", cartRoutes);
+// app.use("/order", orderRoutes);
 
 app.use((req, res, next) => {
     console.log("err 404");
@@ -45,4 +45,6 @@ app.use((error, req, res, next) => {
 });
 
 //orm version 1
-app.listen(5000, databaseConnection.init);
+databaseConnection.sequelize.sync()
+app.listen(5000);
+
