@@ -4,7 +4,7 @@ const app = express();
 require("dotenv").config();
 
 const databaseConnection = require("./util/Database_Connection");
-
+const test = require("./model/cart_item");
 // const authRoutes = require("./routes/auth");
 // const userRoutes = require("./routes/user");
 // const productRoutes = require("./routes/product");
@@ -45,6 +45,6 @@ app.use((error, req, res, next) => {
 });
 
 //orm version 1
-databaseConnection.sequelize.sync()
-app.listen(5000);
-
+databaseConnection.sync({ force: true }).then(() => {
+    app.listen(5000);
+});

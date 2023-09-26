@@ -1,15 +1,23 @@
-const Sequelize = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = require("../util/Database_Connection");
-
-const CartItem = sequelize.define("cartItem", {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true,
+const User = sequelize.define(
+    "User",
+    {
+        // Model attributes are defined here
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            // allowNull defaults to true
+        },
     },
-    quantity: Sequelize.INTEGER,
-});
+    {
+        // Other model options go here
+    }
+);
 
-module.exports = CartItem;
+// `sequelize.define` also returns the model
+console.log(User === sequelize.models.User); // true
