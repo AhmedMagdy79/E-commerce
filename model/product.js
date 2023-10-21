@@ -15,7 +15,7 @@
 //             .input("color", sql.VarChar, `${color}`)
 //             .input("price", sql.Money, `${price}`)
 //             .query(
-//                 `INSERT INTO [defaultUser].[Products] (title,descreption,imgURL,category,size,color,price) Values (@title,@descreption,@imgURL,@category,@size,@color,@price); 
+//                 `INSERT INTO [defaultUser].[Products] (title,descreption,imgURL,category,size,color,price) Values (@title,@descreption,@imgURL,@category,@size,@color,@price);
 //                 `
 //             );
 //         return result.rowsAffected[0];
@@ -52,17 +52,16 @@
 //     }
 // };
 
-
 // exports.deleteProduct = async (id) => {
 //     try {
 //         const result = await DBconnection()
 //             .request()
 //             .input("id", sql.Int, `${id}`)
 //             .query(
-//                 `DELETE from [defaultUser].[Products]  where ID=@id; 
+//                 `DELETE from [defaultUser].[Products]  where ID=@id;
 //                 `
 //             );
-            
+
 //         return result.rowsAffected[0];
 //     } catch (err) {
 //         console.log(err);
@@ -75,7 +74,7 @@
 //         const result = await DBconnection()
 //             .request()
 //             .query(
-//                 `SELECT * from [defaultUser].[Users] ; 
+//                 `SELECT * from [defaultUser].[Users] ;
 //                 `
 //             );
 //         return result.recordset;
@@ -84,7 +83,6 @@
 //         throw new Error();
 //     }
 // };
-
 
 // exports.getNewestUsers = async (number) => {
 //     try {
@@ -92,7 +90,7 @@
 //             .request()
 //             .input("number", sql.Int, `${number}`)
 //             .query(
-//                 `SELECT TOP (@number) * from [defaultUser].[Users] order by created_at desc; 
+//                 `SELECT TOP (@number) * from [defaultUser].[Users] order by created_at desc;
 //                 `
 //             );
 //         return result.recordset;
@@ -102,13 +100,12 @@
 //     }
 // };
 
-
 // exports.getAllProducts = async () => {
 //     try {
 //         const result = await DBconnection()
 //             .request()
 //             .query(
-//                 `SELECT * from [defaultUser].[Products] ; 
+//                 `SELECT * from [defaultUser].[Products] ;
 //                 `
 //             );
 //         return result.recordset;
@@ -124,7 +121,7 @@
 //             .request()
 //             .input("number", sql.Int, `${number}`)
 //             .query(
-//                 `SELECT TOP (@number) * from [defaultUser].[Products] order by created_at desc; 
+//                 `SELECT TOP (@number) * from [defaultUser].[Products] order by created_at desc;
 //                 `
 //             );
 //         return result.recordset;
@@ -133,7 +130,6 @@
 //         throw new Error();
 //     }
 // };
-
 
 // exports.getProductsByCategory = async (category) => {
 //     try {
@@ -141,7 +137,7 @@
 //             .request()
 //             .input("category", sql.VarChar, `${category}`)
 //             .query(
-//                 `SELECT * from [defaultUser].[Products] where category=@category; 
+//                 `SELECT * from [defaultUser].[Products] where category=@category;
 //                 `
 //             );
 //         return result.recordset;
@@ -150,3 +146,47 @@
 //         throw new Error();
 //     }
 // };
+
+const { Sequelize, DataTypes } = require("sequelize");
+
+const sequelize = require("../util/Database_Connection");
+
+const Product = sequelize.define(
+    "Product",
+    {
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        imgURL: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        categry: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        size: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        color: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        price: {
+            type: DataTypes.DOUBLE,
+            allowNull: false,
+        },
+    },
+    {
+        // Other model options go here
+        timestamps: true,
+    }
+);
+
+module.exports.Product = Product;

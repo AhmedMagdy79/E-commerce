@@ -11,7 +11,6 @@ const sequelize = new Sequelize(
         port: 64814,
     }
 );
-module.exports = sequelize;
 try {
     (async function () {
         await sequelize.authenticate();
@@ -20,4 +19,6 @@ try {
 } catch (error) {
     console.error("Unable to connect to the database:", error);
 }
+module.exports = sequelize;
+
 // console.log(sequelize);
