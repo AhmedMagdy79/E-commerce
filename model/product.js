@@ -184,9 +184,8 @@ const Product = sequelize.define(
         },
     },
     {
-        // Other model options go here
         timestamps: true,
     }
 );
 
-module.exports.Product = Product;
+module.exports = Product;

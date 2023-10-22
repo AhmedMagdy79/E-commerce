@@ -78,3 +78,30 @@
 //         throw new Error();
 //     }
 // };
+const { Sequelize, DataTypes } = require("sequelize");
+
+const sequelize = require("../util/Database_Connection");
+
+
+const Order = sequelize.define(
+    "Order",
+    {
+        address: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        cost: {
+            type: DataTypes.DOUBLE,
+            allowNull: false,
+        },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    },
+    {
+        timestamps: true,
+    }
+);
+
+module.exports = Order;

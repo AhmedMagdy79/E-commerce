@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+
 require("dotenv").config();
 
 const sequelize = new Sequelize(
@@ -21,4 +22,16 @@ try {
 }
 module.exports = sequelize;
 
-// console.log(sequelize);
+const User = require("../model/user");
+const Product = require("../model/product");
+const Cart = require("../model/cart");
+const CartItem = require("../model/cart_item");
+const Order = require("../model/order");
+const OrderItem = require("../model/order_item");
+
+
+
+User.hasMany(Order)
+User.hasOne(Cart)
+Product.belongsToMany(Cart, { through: CartItem });
+Order.belongsToMany(Product, { through: OrderItem });

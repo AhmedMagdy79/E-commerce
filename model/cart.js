@@ -95,3 +95,18 @@
 //         throw new Error();
 //     }
 // };
+
+const { Sequelize, DataTypes } = require("sequelize");
+
+const sequelize = require("../util/Database_Connection");
+
+const Cart = sequelize.define(
+    "Cart",
+    {
+    },
+    {
+        timestamps: true,
+    }
+);
+
+module.exports = Cart;

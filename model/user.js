@@ -117,4 +117,4 @@ const User = sequelize.define(
     }
 );
 
-module.exports.User = User;
+module.exports = User;
