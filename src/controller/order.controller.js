@@ -1,10 +1,10 @@
-const db = require("../model/order");
-const errors = require("../util/error_handling");
-const {validateOrderData} = require("../util/validation");
+
+const errors = require("../util/error_handling.js");
+const { validateOrderData } = require("../util/validation.js");
 
 exports.addOrder = async (req, res, next) => {
     try {
-        const { userID, address, cartID, cost} = req.body;
+        const { userID, address, cartID, cost } = req.body;
         const { error } = validateOrderData(req.body);
         if (error) {
             errors.validationError(error.details);
@@ -23,14 +23,13 @@ exports.addOrder = async (req, res, next) => {
     }
 };
 
-
 exports.getOrder = async (req, res, next) => {
     try {
-        const  userID  = req.params.id;
+        const userID = req.params.id;
         const result = await db.getOrder(userID);
         if (result) {
             res.status(200).json({
-                "orders": result,
+                orders: result,
             });
         } else {
             throw new Error();
@@ -41,14 +40,13 @@ exports.getOrder = async (req, res, next) => {
     }
 };
 
-
 exports.deleteOrder = async (req, res, next) => {
     try {
         const orderID = req.params.orderID;
         const result = await db.deleteOrder(orderID);
         if (result) {
             res.status(200).json({
-                "message": "order deleted successfully",
+                message: "order deleted successfully",
             });
         } else {
             throw new Error();

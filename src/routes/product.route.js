@@ -1,6 +1,6 @@
 const express = require("express");
 const auth = require("../middleware/is_auth");
-const productController = require("../controller/product");
+const productController = require("../controller/product.controller");
 const router = express.Router();
 
 router.post("/", auth.verifyAdmin, productController.createProduct);

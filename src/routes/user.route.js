@@ -1,6 +1,6 @@
 const express = require("express");
 const auth = require("../middleware/is_auth");
-const userController = require("../controller/user");
+const userController = require("../controller/user.controller");
 const router = express.Router();
 
 router.put("/:id", auth.verifyUser , userController.editUser);

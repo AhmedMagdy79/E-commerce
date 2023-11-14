@@ -4,12 +4,11 @@ const app = express();
 require("dotenv").config();
 
 const databaseConnection = require("./util/Database_Connection");
-const test = require("./model/cart_item");
-// const authRoutes = require("./routes/auth");
-// const userRoutes = require("./routes/user");
-// const productRoutes = require("./routes/product");
-// const cartRoutes = require("./routes/cart");
-// const orderRoutes = require("./routes/order");
+const authRoutes = require("./routes/auth.route");
+const userRoutes = require("./routes/user.route");
+const productRoutes = require("./routes/product.route");
+const cartRoutes = require("./routes/cart.route");
+const orderRoutes = require("./routes/order.route");
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -45,6 +44,6 @@ app.use((error, req, res, next) => {
 });
 
 //orm version 1
-databaseConnection.sync({ force: true }).then(() => {
+databaseConnection.sync({/* force: true */}).then(() => {
     app.listen(5000);
 });

@@ -1,8 +1,6 @@
 // const DBconnection = require("../util/Database_Connection").getConnection;
 // const sql = require("mssql");
 
-
-
 // exports.addOrder = async (userID, cartId, address, cost) => {
 //     try {
 //         let result = await DBconnection()
@@ -32,10 +30,10 @@
 //             .input("cartID", sql.Int, `${cartID}`)
 //             .input("ID", sql.Int, `${ID}`)
 //             .query(
-//                 `INSERT INTO [defaultUser].[OrderItem] (orderID, productID, quantity) 
-//                 Select ID, productID, quantity from [defaultUser].[Orders] ,[defaultUser].[CartItem]  
+//                 `INSERT INTO [defaultUser].[OrderItem] (orderID, productID, quantity)
+//                 Select ID, productID, quantity from [defaultUser].[Orders] ,[defaultUser].[CartItem]
 //                 where [defaultUser].[Orders].ID = @ID AND [defaultUser].[CartItem].cartID = @cartID ;
-                
+
 //                 Delete from [defaultUser].[CartItem] Where cartID = @cartID;
 //                 `
 //             );
@@ -62,7 +60,6 @@
 //     }
 // };
 
-
 // exports.deleteOrder = async (orderID) => {
 //     try {
 //         let result = await DBconnection()
@@ -81,7 +78,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = require("../util/Database_Connection");
-
 
 const Order = sequelize.define(
     "Order",

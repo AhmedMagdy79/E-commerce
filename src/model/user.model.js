@@ -110,6 +110,15 @@ const User = sequelize.define(
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
+        verificationToken: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        isVerified: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
+        },
     },
     {
         // Other model options go here

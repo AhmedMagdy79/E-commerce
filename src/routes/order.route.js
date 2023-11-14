@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/is_auth");
-const orderController =  require("../controller/order")
+const orderController =  require("../controller/order.controller")
 
 router.post("/", auth.verifyUserCart, orderController.addOrder);
 

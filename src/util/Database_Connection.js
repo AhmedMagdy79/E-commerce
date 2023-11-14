@@ -22,16 +22,14 @@ try {
 }
 module.exports = sequelize;
 
-const User = require("../model/user");
-const Product = require("../model/product");
-const Cart = require("../model/cart");
-const CartItem = require("../model/cart_item");
-const Order = require("../model/order");
-const OrderItem = require("../model/order_item");
+const User = require("../model/user.model.js");
+const Product = require("../model/product.model.js");
+const Cart = require("../model/cart.model.js");
+const CartItem = require("../model/cartItem.model.js");
+const Order = require("../model/order.model.js");
+const OrderItem = require("../model/orderItem.model.js");
 
-
-
-User.hasMany(Order)
-User.hasOne(Cart)
+User.hasMany(Order);
+User.hasOne(Cart);
 Product.belongsToMany(Cart, { through: CartItem });
 Order.belongsToMany(Product, { through: OrderItem });

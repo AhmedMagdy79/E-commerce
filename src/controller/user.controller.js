@@ -1,4 +1,3 @@
-const db = require("../model/user");
 const crypto = require("crypto-js");
 const errors = require("../util/error_handling");
 const { validateUserData } = require("../util/validation");

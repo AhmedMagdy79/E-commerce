@@ -1,4 +1,4 @@
-const db = require("../model/auth");
+
 const crypto = require("crypto-js");
 const jwt = require("jsonwebtoken");
 const errors = require("../util/error_handling");

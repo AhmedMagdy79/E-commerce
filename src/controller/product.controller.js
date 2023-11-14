@@ -1,4 +1,4 @@
-const db = require("../model/product");
+
 const errors = require("../util/error_handling");
 const { validateProductData } = require("../util/validation");
 
