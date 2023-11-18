@@ -32,6 +32,11 @@ const ProductSchema = joi.object({
     price: joi.number().required(),
 });
 
+const verifyEmailSchema = joi.object({
+    email: joi.string().email().required(),
+    token: joi.required(),
+});
+
 exports.validateUserData = validatior(userSchema);
 
 exports.validateLogIn = validatior(logInSchema);
@@ -39,6 +44,8 @@ exports.validateLogIn = validatior(logInSchema);
 exports.validateOrderData = validatior(addOrderSchema);
 
 exports.validateProductData = validatior(ProductSchema);
+
+exports.validateverifyEmail = validatior(verifyEmailSchema);
 
 
 

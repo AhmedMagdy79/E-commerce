@@ -109,9 +109,14 @@ const User = sequelize.define(
         isAdmin: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
+            defaultValue: false,
         },
         verificationToken: {
             type: DataTypes.STRING,
+            allowNull: false,
+        },
+        tokenExpireDate: {
+            type: DataTypes.DATE,
             allowNull: false,
         },
         isVerified: {

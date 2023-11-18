@@ -2,7 +2,6 @@ const express = require("express");
 
 const app = express();
 require("dotenv").config();
-
 const databaseConnection = require("./util/Database_Connection");
 const authRoutes = require("./routes/auth.route");
 const userRoutes = require("./routes/user.route");
@@ -24,11 +23,11 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.use("/auth", authRoutes);
-// app.use("/user", userRoutes);
-// app.use("/product", productRoutes);
-// app.use("/cart", cartRoutes);
-// app.use("/order", orderRoutes);
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
+app.use("/product", productRoutes);
+app.use("/cart", cartRoutes);
+app.use("/order", orderRoutes);
 
 app.use((req, res, next) => {
     console.log("err 404");

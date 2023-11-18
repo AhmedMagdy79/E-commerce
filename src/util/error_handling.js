@@ -27,3 +27,10 @@ exports.notFoundError = () =>{
     error.statusCode = 404;
     throw error;
 }
+
+exports.badRequestError = (message) => {
+    message = message || "Error occurred";
+    const error = new Error(message);
+    error.statusCode = 400;
+    throw error;
+};

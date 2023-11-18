@@ -1,31 +1,27 @@
+const authService = require("../service/auth.service");
 
-const crypto = require("crypto-js");
-const jwt = require("jsonwebtoken");
-const errors = require("../util/error_handling");
-const {validateUserData, validateLogIn} = require("../util/validation");
-require("dotenv").config();
-
+//
 exports.register = async (req, res, next) => {
     try {
-        const { name, email, password } = req.body;
-        const {error} = validateUserData(req.body);
-        if(error){
-            errors.validationError(error.details);
-        }
-        const emailExist = db.emailExist(email);
-        if (emailExist){
-            errors.validationError("this email isn't available");
-        }
-        hashedPassword = crypto.AES.encrypt(
-            password,
-            process.env.PASSWORD_SECRET
+        const { type, statusCode, message, user } = await authService.register(
+            req.body
         );
-        result = await db.register(email, name, hashedPassword);
-        if (result) {
-            return res.status(201).json({ result: "user created succesfully" });
-        } else {
-            throw new Error();
-        }
+        user.password = undefined;
+        user.verificationToken = undefined;
+        user.tokenExpireDate = undefined;
+        return res.status(statusCode).json({ type, message, user });
+    } catch (err) {
+        next(err);
+    }
+};
+
+exports.verifyEmail = async (req, res, next) => {
+    try {
+        const { type, statusCode, message } = await authService.verifyEmail(
+            req.body
+        );
+
+        return res.status(statusCode).json({ type, message });
     } catch (err) {
         next(err);
     }
@@ -60,7 +56,7 @@ exports.login = async (req, res, next) => {
         );
         const { password, ...other } = user;
         res.status(200).json({ userData: { ...other, accessToken } });
-    } catch (err) {       
-            next(err);
+    } catch (err) {
+        next(err);
     }
 };

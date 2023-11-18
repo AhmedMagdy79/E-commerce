@@ -5,6 +5,8 @@ const authConroller = require("../controller/auth.controller");
 
 router.post("/register", authConroller.register);
 
+router.post("/verify-email", authConroller.verifyEmail);
+
 router.post("/login", authConroller.login);
 
 module.exports = router;
